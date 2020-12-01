@@ -14,8 +14,8 @@ public class Reto5Application {
             new VentanaPrincipal().setVisible(true);
         }
 
-	public static void runSpringServer(String [] args){
-		SpringApplication.run(Reto5Application.class, args);
+	public static void IniciarSpring(){
+		SpringApplication.run(Reto5Application.class);
 	}
 
 }

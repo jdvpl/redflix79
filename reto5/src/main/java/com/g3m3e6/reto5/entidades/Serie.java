@@ -7,6 +7,8 @@ package com.g3m3e6.reto5.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,10 +17,11 @@ import javax.persistence.Table;
  * @author Lenovo
  */
 @Entity
-@Table(name="usuario")
+@Table(name="serie")
 
 public class Serie {
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name="id_serie")
   Integer idSerie;
   

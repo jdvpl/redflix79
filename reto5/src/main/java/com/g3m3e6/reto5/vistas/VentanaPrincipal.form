@@ -55,7 +55,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="PUsuario" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbNotificaciones" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -84,7 +84,7 @@
                       <Component id="PUsuario" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="141" max="-2" attributes="0"/>
+                  <Component id="lbNotificaciones" min="-2" pref="141" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -311,7 +311,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="lbNotificaciones">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="1"/>
@@ -460,6 +460,9 @@
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearUsuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarUsuario">
               <Properties>
@@ -479,6 +482,9 @@
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarUsuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnActualizarUsuario">
               <Properties>
@@ -498,6 +504,9 @@
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarUsuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEliminarUsuario">
               <Properties>
@@ -639,6 +648,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNumTemporadas">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNumTemporadasKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearSerie">
               <Properties>
@@ -720,6 +732,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNumCapitulos">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNumCapitulosKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbNumCapitulos">
               <Properties>
@@ -812,7 +827,6 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tfNombreDirector" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="lbNombreDirector" alignment="3" min="-2" max="-2" attributes="0"/>

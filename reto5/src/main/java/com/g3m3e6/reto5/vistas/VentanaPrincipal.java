@@ -5,6 +5,14 @@
  */
 package com.g3m3e6.reto5.vistas;
 
+import com.g3m3e6.reto5.Reto5Application;
+import com.g3m3e6.reto5.SpringContext;
+import com.g3m3e6.reto5.entidades.Serie;
+import com.g3m3e6.reto5.entidades.Usuario;
+import com.g3m3e6.reto5.repositorios.PeliculaRepositorio;
+import com.g3m3e6.reto5.repositorios.SerieRepositorio;
+import com.g3m3e6.reto5.repositorios.UsuarioRepositorio;
+import java.util.Optional;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,11 +24,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+    UsuarioRepositorio usuarioRepositorio;
+    PeliculaRepositorio peliculaRepositorio;
+    SerieRepositorio serieRepositorio;
+    
     public VentanaPrincipal() {
+//         iniciar Spring
+        Reto5Application.IniciarSpring();
+//        que no sea expandible
         setResizable(false);
         initComponents();
         PPelicula.setVisible(false);
         PSerie.setVisible(false);
+        
+//        SpringContext
+        usuarioRepositorio=SpringContext.getBean(UsuarioRepositorio.class);
+        peliculaRepositorio=SpringContext.getBean(PeliculaRepositorio.class);
+        serieRepositorio=SpringContext.getBean(SerieRepositorio.class);
+        
     }
 
     /**
@@ -41,7 +62,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BtnUsuario = new javax.swing.JButton();
         BtnSerie = new javax.swing.JButton();
         BtnPelicula = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lbNotificaciones = new javax.swing.JLabel();
         PUsuario = new javax.swing.JPanel();
         lbUsuario = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -207,11 +228,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Panel de notificaciones");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lbNotificaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lbNotificaciones.setForeground(new java.awt.Color(0, 0, 0));
+        lbNotificaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbNotificaciones.setText("Panel de notificaciones");
+        lbNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         PUsuario.setBackground(new java.awt.Color(187, 187, 187));
         PUsuario.setForeground(new java.awt.Color(204, 204, 204));
@@ -242,6 +263,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCrearUsuario.setBorder(null);
         btnCrearUsuario.setBorderPainted(false);
         btnCrearUsuario.setContentAreaFilled(false);
+        btnCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearUsuarioActionPerformed(evt);
+            }
+        });
 
         btnBuscarUsuario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnBuscarUsuario.setForeground(new java.awt.Color(0, 102, 255));
@@ -250,6 +276,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscarUsuario.setBorder(null);
         btnBuscarUsuario.setBorderPainted(false);
         btnBuscarUsuario.setContentAreaFilled(false);
+        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnActualizarUsuario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnActualizarUsuario.setForeground(new java.awt.Color(0, 102, 255));
@@ -258,6 +289,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnActualizarUsuario.setBorder(null);
         btnActualizarUsuario.setBorderPainted(false);
         btnActualizarUsuario.setContentAreaFilled(false);
+        btnActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnEliminarUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnEliminarUsuario.setForeground(new java.awt.Color(0, 102, 255));
@@ -341,6 +377,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lbNumTemporadas.setForeground(new java.awt.Color(0, 0, 0));
         lbNumTemporadas.setText("Temporadas:");
 
+        tfNumTemporadas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNumTemporadasKeyTyped(evt);
+            }
+        });
+
         btnCrearSerie.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnCrearSerie.setForeground(new java.awt.Color(0, 102, 255));
         btnCrearSerie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/disquete.png"))); // NOI18N
@@ -377,6 +419,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnEliminarSerie.setBorder(null);
         btnEliminarSerie.setBorderPainted(false);
         btnEliminarSerie.setContentAreaFilled(false);
+
+        tfNumCapitulos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNumCapitulosKeyTyped(evt);
+            }
+        });
 
         lbNumCapitulos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbNumCapitulos.setForeground(new java.awt.Color(0, 0, 0));
@@ -570,7 +618,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addComponent(lbResumenPelicula)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNombreDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNombreDirector))
@@ -595,7 +642,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lbNotificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(lbAliasUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lbAliasUsuarioLayout.createSequentialGroup()
                     .addContainerGap(195, Short.MAX_VALUE)
@@ -616,7 +663,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(lbAliasUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(lbAliasUsuarioLayout.createSequentialGroup()
@@ -690,8 +737,122 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnCrearSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSerieActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Usuario Registrado");
+        String titulo=tfTituloSerie.getText();
+        int temporadas=Integer.parseInt(tfNumTemporadas.getText());
+        int capitulos=Integer.parseInt(tfNumCapitulos.getText());
+    
+        if(titulo.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar los campos ");
+        }else{
+            Serie nuevaSerie=new Serie();
+            nuevaSerie.setTituloSerie(titulo);
+            nuevaSerie.setNumTemporadas(temporadas);
+            nuevaSerie.setNumCapitulos(capitulos);
+            
+            serieRepositorio.save(nuevaSerie);
+            lbNotificaciones.setText("La Serie: "+titulo+" Se agrego correctamente");
+            tfTituloSerie.setText("");
+            tfNumTemporadas.setText("");
+            tfNumCapitulos.setText("");
+            JOptionPane.showMessageDialog(null,"La Serie: "+titulo+" Se agrego correctamente");
+            
+        }
+        
+        
     }//GEN-LAST:event_btnCrearSerieActionPerformed
+
+    private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
+//       obtener datos, crear y guardar Usuario
+        String Alias=tfAliasUsuario.getText();
+        String Nombre=tfNombreUsuario.getText();
+    
+        if(Alias.isEmpty() || Nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar los campos ");
+        }else{
+        Optional<Usuario> query=usuarioRepositorio.findById(Alias);
+        if(query.isPresent()){
+            JOptionPane.showMessageDialog(null, "El usuario "+Alias+"Ya existe");
+        }else{
+            Usuario usuario=new Usuario();
+            usuario.setAliasUsuario(Alias);
+            usuario.setNombreUsuario(Nombre);
+            usuarioRepositorio.save(usuario);
+            lbNotificaciones.setText(Alias+" con nombre: "+Nombre+" Se agrego correctamente");
+            tfAliasUsuario.setText("");
+            tfNombreUsuario.setText("");
+            JOptionPane.showMessageDialog(null,"Usuario "+Alias+" se agrego correctamente");
+            }
+        }
+        
+    }//GEN-LAST:event_btnCrearUsuarioActionPerformed
+
+    private void tfNumTemporadasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumTemporadasKeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+        }
+    }//GEN-LAST:event_tfNumTemporadasKeyTyped
+
+    private void tfNumCapitulosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumCapitulosKeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+        }
+    }//GEN-LAST:event_tfNumCapitulosKeyTyped
+
+    private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
+        // TODO add your handling code here:
+        String Alias=tfAliasUsuario.getText();
+        String Nombre=tfNombreUsuario.getText();
+    
+        if(Alias.isEmpty() || Nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar los campos ");
+        }else{
+            
+            Optional<Usuario> query=usuarioRepositorio.findById(Alias);
+            
+            if(!query.isPresent()){
+                JOptionPane.showMessageDialog(null,"El Usuario "+Alias+" usuario no existe ");
+            }else{
+            Usuario datos=usuarioRepositorio.findById(Alias).get();
+            datos.setNombreUsuario(Nombre);
+        
+            usuarioRepositorio.save(datos);
+            lbNotificaciones.setText("El usuario: "+ Alias+ "Se actualizo correctamente");
+            tfAliasUsuario.setText("");
+            tfNombreUsuario.setText("");
+            JOptionPane.showMessageDialog(null,"El usuario: "+ Alias+ "Se actualizo correctamente");
+            
+        }
+        }
+    }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
+
+    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+        String Alias=tfAliasUsuario.getText();
+        String Nombre=tfNombreUsuario.getText();
+    
+        if(Alias.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar el campo de allias ");
+        }else{
+            
+            Optional<Usuario> query=usuarioRepositorio.findById(Alias);
+            if(!query.isPresent()){
+                JOptionPane.showMessageDialog(null,"El Usuario "+Alias+" usuario no existe ");
+            }else{
+                Usuario datos=query.get();
+                tfNombreUsuario.setText(datos.getNombreUsuario());
+     
+            
+        }
+        }
+    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -750,7 +911,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -758,6 +918,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel lbAliasUsuario;
     private javax.swing.JLabel lbNombreDirector;
     private javax.swing.JLabel lbNombreUsuario;
+    private javax.swing.JLabel lbNotificaciones;
     private javax.swing.JLabel lbNumCapitulos;
     private javax.swing.JLabel lbNumTemporadas;
     private javax.swing.JLabel lbPelicula;
