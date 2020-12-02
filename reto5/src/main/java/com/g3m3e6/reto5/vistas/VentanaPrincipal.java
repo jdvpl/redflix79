@@ -8,6 +8,7 @@ import com.g3m3e6.reto5.entidades.Usuario;
 import com.g3m3e6.reto5.repositorios.PeliculaRepositorio;
 import com.g3m3e6.reto5.repositorios.SerieRepositorio;
 import com.g3m3e6.reto5.repositorios.UsuarioRepositorio;
+import java.util.List;
 import java.util.Optional;
 import javax.swing.JOptionPane;
 
@@ -866,8 +867,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
         // TODO add your handling code here:
         String Alias=tfAliasUsuario.getText();
-        String Nombre=tfNombreUsuario.getText();
-    
+
         if(Alias.isEmpty()){
             JOptionPane.showMessageDialog(null,"Por favor completar el campo de allias ");
         }else{
@@ -891,11 +891,81 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSerieActionPerformed
 
     private void btnBuscarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSerieActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+            
+           String titulo=tfTituloSerie.getText();
+           List<Serie> Ssries=serieRepositorio.findAll();
+           Integer idSerie=null;
+           for(Serie serie : Ssries){
+               if(serie.getTituloSerie().equals(titulo)){
+                   idSerie=serie.getIdSerie();
+                   break;
+               }else{
+                   JOptionPane.showMessageDialog(null,"La serie"+titulo+" no existe ");
+                   break;
+               }
+           }
+           
+           if(titulo.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar el campo de titulo ");
+        }else{
+            Optional<Serie> query=serieRepositorio.findById(idSerie);
+            if(!query.isPresent() ||query==null){
+                JOptionPane.showMessageDialog(null,"La serie"+titulo+" no existe ");
+            }else{
+                Serie datos=query.get();
+                int temporadas=(datos.getNumTemporadas());
+                int capitulos=(datos.getNumCapitulos());
+                tfNumTemporadas.setText(String.valueOf(temporadas));
+                tfNumCapitulos.setText(String.valueOf(capitulos));
+        }
+        }
+
     }//GEN-LAST:event_btnBuscarSerieActionPerformed
 
     private void btnActualizarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarSerieActionPerformed
         // TODO add your handling code here:
+        String titulo=tfTituloSerie.getText();
+        String temporadas=tfNumCapitulos.getText();
+        String capitulos=tfNumCapitulos.getText();
+        
+           List<Serie> Ssries=serieRepositorio.findAll();
+           Integer idSerie=null;
+           for(Serie serie : Ssries){
+               if(serie.getTituloSerie().equals(titulo)){
+                   idSerie=serie.getIdSerie();
+                   break;
+               }else{
+                   JOptionPane.showMessageDialog(null,"La serie "+titulo+" no existe ");
+                   break;
+               }
+           }
+           
+        if(titulo.isEmpty() || temporadas.isEmpty() || capitulos.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar los campos ");
+        }else{
+            
+            Optional<Serie> query=serieRepositorio.findById(idSerie);
+            
+            if(!query.isPresent()){
+                JOptionPane.showMessageDialog(null,"La Serie"+titulo+" no existe ");
+            }else{
+            Serie datos=serieRepositorio.findById(idSerie).get();
+            datos.setTituloSerie(titulo);
+            int cap=Integer.parseInt(capitulos);
+            int temp=Integer.parseInt(temporadas);
+            datos.setNumCapitulos(cap);
+            datos.setNumTemporadas(temp);
+        
+            serieRepositorio.save(datos);
+            lbNotificaciones.setText("La Serie"+ titulo+ "Se actualizo correctamente");
+            tfAliasUsuario.setText("");
+            tfNombreUsuario.setText("");
+            JOptionPane.showMessageDialog(null,"La Serie"+ titulo+ "Se actualizo correctamente");
+            
+        }
+        }
+           
     }//GEN-LAST:event_btnActualizarSerieActionPerformed
 
     private void btnCrearPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPeliculaActionPerformed
