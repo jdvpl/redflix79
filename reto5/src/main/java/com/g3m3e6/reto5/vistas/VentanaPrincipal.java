@@ -882,8 +882,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
+    //Se crea codigo boton eliminar 
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
         // TODO add your handling code here:
+        String Alias=tfAliasUsuario.getText();
+        String Nombre=tfNombreUsuario.getText();
+        if(Alias.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor completar el campo de allias ");
+        }else{
+            Optional<Usuario> query=usuarioRepositorio.findById(Alias);
+            if(!query.isPresent()){
+                JOptionPane.showMessageDialog(null,"El Usuario "+Alias+" usuario no existe ");
+            }else{
+                usuarioRepositorio.deleteById(Alias);
+                JOptionPane.showMessageDialog(null,"El Usuario "+Alias+" fue elliminado ");
+            }
+        }
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
 
     private void btnEliminarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSerieActionPerformed
