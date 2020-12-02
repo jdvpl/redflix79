@@ -235,7 +235,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Alas:");
+        jLabel6.setText("Alias:");
 
         tfAliasUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,6 +399,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscarSerie.setBorder(null);
         btnBuscarSerie.setBorderPainted(false);
         btnBuscarSerie.setContentAreaFilled(false);
+        btnBuscarSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarSerieActionPerformed(evt);
+            }
+        });
 
         btnActualizarSerie.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnActualizarSerie.setForeground(new java.awt.Color(0, 102, 255));
@@ -407,6 +412,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnActualizarSerie.setBorder(null);
         btnActualizarSerie.setBorderPainted(false);
         btnActualizarSerie.setContentAreaFilled(false);
+        btnActualizarSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarSerieActionPerformed(evt);
+            }
+        });
 
         btnEliminarSerie.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnEliminarSerie.setForeground(new java.awt.Color(0, 102, 255));
@@ -415,6 +425,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnEliminarSerie.setBorder(null);
         btnEliminarSerie.setBorderPainted(false);
         btnEliminarSerie.setContentAreaFilled(false);
+        btnEliminarSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSerieActionPerformed(evt);
+            }
+        });
 
         tfNumCapitulos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -510,6 +525,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCrearPelicula.setBorder(null);
         btnCrearPelicula.setBorderPainted(false);
         btnCrearPelicula.setContentAreaFilled(false);
+        btnCrearPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPeliculaActionPerformed(evt);
+            }
+        });
 
         btnBuscarPelicula.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnBuscarPelicula.setForeground(new java.awt.Color(0, 102, 255));
@@ -518,6 +538,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscarPelicula.setBorder(null);
         btnBuscarPelicula.setBorderPainted(false);
         btnBuscarPelicula.setContentAreaFilled(false);
+        btnBuscarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPeliculaActionPerformed(evt);
+            }
+        });
 
         btnActualizarPelicula.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnActualizarPelicula.setForeground(new java.awt.Color(0, 102, 255));
@@ -526,6 +551,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnActualizarPelicula.setBorder(null);
         btnActualizarPelicula.setBorderPainted(false);
         btnActualizarPelicula.setContentAreaFilled(false);
+        btnActualizarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarPeliculaActionPerformed(evt);
+            }
+        });
 
         btnEliminarPelicula.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnEliminarPelicula.setForeground(new java.awt.Color(0, 102, 255));
@@ -534,6 +564,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnEliminarPelicula.setBorder(null);
         btnEliminarPelicula.setBorderPainted(false);
         btnEliminarPelicula.setContentAreaFilled(false);
+        btnEliminarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPeliculaActionPerformed(evt);
+            }
+        });
 
         tfResumenPelicula.setColumns(20);
         tfResumenPelicula.setRows(5);
@@ -850,6 +885,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
+
+    private void btnEliminarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarSerieActionPerformed
+
+    private void btnBuscarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarSerieActionPerformed
+
+    private void btnActualizarSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarSerieActionPerformed
+
+    private void btnCrearPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearPeliculaActionPerformed
+
+    private void btnBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarPeliculaActionPerformed
+
+    private void btnActualizarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarPeliculaActionPerformed
+
+    private void btnEliminarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
